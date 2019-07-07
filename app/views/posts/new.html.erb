@@ -1,0 +1,13 @@
+<h1>Posts#new</h1>
+<p>Find me in app/views/posts/new.html.erb</p>
+
+<%= form_with model: @post do |f| %>
+	<%= f.label :タイトル %>
+	<%= f.text_field :title %>
+	<%= f.label :本文 %>
+	<%= f.text_field :body %>
+	<%= f.fields_for :photos do |i| %>
+		<%= i.attachment_field :image %>
+	<% end %>
+	<%= f.submit "投稿", class: "btn btn-dark" %>
+<% end %>
