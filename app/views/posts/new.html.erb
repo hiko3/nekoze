@@ -7,7 +7,7 @@
 	<%= f.label :本文 %>
 	<%= f.text_field :body %>
 	<%= f.fields_for :photos do |i| %>
-		<%= i.attachment_field :image %>
+		<%= i.attachment_field :image, multiple: true, direct: true, presigned: true %>
 	<% end %>
 	<%= f.submit "投稿", class: "btn btn-dark" %>
 <% end %>
