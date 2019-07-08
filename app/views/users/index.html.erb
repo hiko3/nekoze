@@ -1,7 +1,14 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-
-<% @users.each do |user| %>
-	<%= link_to user.name, user_path(user) %>
-<% end %>
-
+<div class="container">
+	<div class="row mt-5">
+		<% @users.each do |user| %>
+				<div class="col-md-1">
+			<%= link_to user_path(user) do %>
+					<%= user.name %>
+				</div>
+				<div class="col-md-4">
+					<%= attachment_image_tag user, :profile_image, :fill, 200, 200 %>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

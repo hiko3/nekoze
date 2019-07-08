@@ -1,13 +1,30 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div class="container">
+	<div class="card text-dark w-75 m-auto">
+		<div class="card-header bg-info text-center text-white">
+			新規投稿
+		</div>
 
-<%= form_with model: @post do |f| %>
-	<%= f.label :タイトル %>
-	<%= f.text_field :title %>
-	<%= f.label :本文 %>
-	<%= f.text_field :body %>
-	<%= f.fields_for :photos do |i| %>
-		<%= i.attachment_field :image, multiple: true, direct: true, presigned: true %>
-	<% end %>
-	<%= f.submit "投稿", class: "btn btn-dark" %>
-<% end %>
+		<div class="card-body bg-light" >
+			<div class="form-group">
+				<%= form_with model: @post do |f| %>
+				<div class="form-row">
+					<div class="col-md-9">
+						<%= f.label :タイトル %>
+						<%= f.text_field :title, class: "form-control w-75" %>
+					</div>
+					<div class="col-md-3">
+					<%= f.label :ジャンル %>
+					<%= f.select :genre,[["食事、風景","食事、風景"],["ペット、動物","ペット、動物"],["風景","風景"],["日常","日常"]] %>
+					</div>
+				</div>
+					<%= f.label :本文 %>
+					<%= f.text_field :body, class: "form-control" %>
+					<%= f.fields_for :photos do |i| %>
+						<%= i.attachment_field :image, class: "form-control-file my-3" %>
+					<% end %>
+					<%= f.submit "投稿", class: "btn btn-dark my-3" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="card text-dark w-75 m-auto">
+		<div class="card-header bg-info text-center text-white">
+			投稿内容編集
+		</div>
+
+		<div class="card-body bg-light" >
+			<div class="form-group">
+				<%= form_with model: @post do |f| %>
+					<%= f.label :タイトル %>
+					<%= f.text_field :title, class: "form-control w-50" %>
+					<%= f.label :本文 %>
+					<%= f.text_field :body, class: "form-control w-75" %>
+						<%# @post.photos.each do |photo| %>
+						<%#= attachment_image_tag photo, :image, :fill, 200, 200 %>
+						<%# end %>
+					<%= f.fields_for :photos do |i| %>
+						<%= i.attachment_field :image, class: "form-control-file my-3" %>
+					<% end %>
+					<%= f.submit "登録", class: "btn btn-dark my-3" %>
+					<%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger my-3" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
