@@ -10,12 +10,16 @@ class PostsController < ApplicationController
   def create
   	@post = Post.new(post_params)
   	if @post.photos.present?
-  	   @post.save
-  	   redirect_to root_path
-  	   flash[:notice] = "投稿されました"
+		if @post.save
+		   redirect_to root_path
+		   flash[:notice] = "投稿されました"
+		else
+			flash[:alert] = "投稿に失敗しました"
+			redirect_to new_post_path
+		end
   	else
   		redirect_to new_post_path
-  		flash[:error] = "投稿に失敗しました"
+  		flash[:alert] = "投稿に失敗しました"
   	end
   end
 
@@ -37,7 +41,8 @@ class PostsController < ApplicationController
   		flash[:notice] = "投稿内容を編集しました"
   		redirect_to post_path(@post)
   	else
-  		flash[:error] = "編集に失敗しました"
+  		flash[:alert] = "編集に失敗しました"
+  		redirect_to edit_post_path(@post)
   	end
   end
 
@@ -46,7 +51,7 @@ class PostsController < ApplicationController
   	if @post.user = current_user
   		flash[:notice] = "投稿を削除しました" if @post.destroy
   	else
-  		flash[:error] = "削除に失敗しました"
+  		flash[:alert] = "削除に失敗しました"
   	end
   		redirect_to root_path
   end

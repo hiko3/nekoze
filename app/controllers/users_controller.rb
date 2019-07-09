@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       flash[:notice] = "ユーザー情報を編集しました"
       redirect_to user_path(@user)
     else
-      flash[:error] = "編集に失敗しました"
+      flash[:alert] = "編集に失敗しました"
       redirect_to user_path(@user)
     end
   end
