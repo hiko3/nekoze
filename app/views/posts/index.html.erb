@@ -21,18 +21,6 @@
 								<%= attachment_image_tag photo, :image, :fill, 200, 200 %>
 							<% end %>
 						<% end %>
-
-							<% if post.liked_by?(current_user).present? %>
-								<%= link_to post_like_path(post,post.liked_by?(current_user)), method: :delete do %>
-									<i class="fa fa-heart" aria-hidden="true" style="color: black;"></i>
-									<span class="text-nowrap"><%= post.likes.count %> いいね</span>
-								<% end %>
-							<% else %>
-								<%= link_to post_likes_path(post), method: :post do %>
-									<i class="fa fa-heart-0" aria-hidden="true" ></i>
-									<span class="text-nowrap"><%= post.likes.count %> いいね</span>
-								<% end %>
-							<% end %>
 					</div>
 						<span class="bg bg-success"><%= post.genre %></span>
 				</div>

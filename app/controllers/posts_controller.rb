@@ -25,10 +25,12 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+  	@comment = Comment.new
   end
 
   def index
-  	@posts = Post.all.order('created_at DESC')
+  	# @posts = Post.all.order('created_at DESC')
+  	@posts = Post.page(params[:page]).reverse_order
   end
 
   def edit
