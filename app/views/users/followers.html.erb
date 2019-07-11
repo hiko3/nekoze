@@ -1,0 +1,19 @@
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-2">
+			<% @users.each do |user| %>
+				<%= attachment_image_tag user, :profile_image, :fill, 50, 50 %>
+				<%= link_to user.name, user_path(user) %>
+		</div>
+		<div class="col-md-4">
+				<% if user != current_user %>
+					<% if user.followed_by?(current_user) %>
+						<%= link_to "フォロー解除", user_relationship_path(user.id), method: :delete, class: "btn btn-outline-primary" %>
+					<% else %>
+						<%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>

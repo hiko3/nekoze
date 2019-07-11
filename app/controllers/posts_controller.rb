@@ -10,17 +10,18 @@ class PostsController < ApplicationController
   def create
   	@post = Post.new(post_params)
   	if @post.photos.present?
-		if @post.save
-		   redirect_to root_path
-		   flash[:notice] = "投稿されました"
-		else
-			flash[:alert] = "投稿に失敗しました"
-			redirect_to new_post_path
-		end
-  	else
-  		redirect_to new_post_path
-  		flash[:alert] = "投稿に失敗しました"
-  	end
+  		# @post.user_id = current_user.id
+	   @post.save
+	   redirect_to root_path
+	   flash[:notice] = "投稿されました"
+	else
+		redirect_to new_post_path
+		flash[:alert] = "投稿に失敗しました"
+	end
+  	# else
+  	# 	redirect_to new_post_path
+  	# 	flash[:alert] = "投稿に失敗しました"
+  	# end
   end
 
   def show
@@ -63,7 +64,7 @@ class PostsController < ApplicationController
 
   	def post_params
   		params.require(:post).permit(:title, :body, :genre,
-  			photos_attributes: [:image]).merge(user_id: current_user.id)
+  			photos_attributes: [:image])#.merge(user_id: current_user.id)
   	end
 
   	# def post_params
