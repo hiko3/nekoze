@@ -17,6 +17,7 @@ class User < ApplicationRecord
   attachment :profile_image
 
   validates :name, presence: true, length: { maximum: 30 }
+  validates :introduction, length: { maximum: 250 }
 
 
 #フォロー済みかどうか判定するメソッド

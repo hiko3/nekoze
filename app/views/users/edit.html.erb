@@ -12,6 +12,8 @@
 					<%= f.label :メールアドレス %>
 					<%= f.text_field :email, class: "form-control w-75" %>
 					<%= f.attachment_field :profile_image, placeholder:"プロフィール画像", class: "form-control-file my-3" %>
+					<%= f.label :自己紹介 %>
+					<%= f.text_area :introduction, class: "form-control" %>
 					<%= f.submit "登録", class: "btn btn-dark my-3" %>
 				<% end %>
 			</div>
