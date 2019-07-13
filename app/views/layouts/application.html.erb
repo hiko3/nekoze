@@ -12,27 +12,35 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container">
-        <%= link_to "nekoze", root_path, class: "navbar-brand" %>
+        <%= link_to root_path do %>
+          <%= image_tag "nekoze.png", class: "navbar-brand", size: "240x90" %>
+         <% end %>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav">
               <% if user_signed_in? %>
 
                 <li class="nav-item">
-                    <%= link_to "投稿一覧" , posts_path, class: "nav-link" %>
+                    <%= link_to "投稿一覧" , posts_path, class: "fas fa-images nav-link" %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to "ユーザーリスト" , users_path, class: "nav-link" %>
+                    <%= link_to "ユーザーリスト" , users_path, class: "fas fa-users nav-link" %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to "新規投稿", new_post_path, class: "nav-link" %>
+                    <%= link_to "新規投稿", new_post_path, class: "fas fa-camera-retro nav-link" %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
+                    <%= link_to "フォロー中", follows_user_path(current_user), class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, data: {confirm: 'ログアウトしてよろしいですか？',cancel: 'やめる', commit: 'ログアウトする'}, title: '確認', class: "nav-link" %>
+                    <%= link_to "フォロワー", followers_user_path(current_user), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "マイページ", user_path(current_user), class: "fas fa-user-circle nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, data: {confirm: 'ログアウトしてよろしいですか？',cancel: 'やめる', commit: 'ログアウトする'}, title: '確認', class: "fas fa-sign-out-alt nav-link" %>
                 </li>
 
               <% else %>
@@ -42,6 +50,9 @@
                 </li>
                 <li class="nav-item">
                 <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                <%= link_to "会員登録", new_user_registration_path, class: "nav-link" %>
                 </li>
               <% end %>
             </ul>

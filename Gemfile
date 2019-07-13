@@ -74,6 +74,7 @@ gem 'refile-mini_magick'
 gem "ransack"
 gem "cocoon"
 gem 'data-confirm-modal'
+gem 'kaminari'
 
 
 
