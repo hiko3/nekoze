@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   	get :follows, on: :member
   	get :followers, on: :member
   end
+  get 'users/:id/likes' =>'users#likes',as: 'user_likes'
 
   resources :posts do
   	resources :photos, only: [:create]

@@ -32,6 +32,7 @@ class PostsController < ApplicationController
   def index
   	# @posts = Post.all.order('created_at DESC')
   	@posts = Post.page(params[:page]).reverse_order
+  	# @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:note_id))
   end
 
   def edit

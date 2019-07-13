@@ -25,4 +25,8 @@ class User < ApplicationRecord
   	passive_relationships.find_by(following_id: user.id).present?
   	# 今自分(引数のuser)がフォローしようとしているユーザー(レシーバー)がフォローされているユーザー(つまりpassive)の中から、引数に渡されたユーザー(自分)がいるかどうかを調べる
   end
+
+  def posts
+  	return Post.where(user_id: self.id)
+  end
 end
