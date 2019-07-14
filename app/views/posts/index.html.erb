@@ -5,27 +5,29 @@
 
 <div class="container">
 	<div class= "row">
-		<% @posts.each do |post| %>
-			<div class="card">
-				<div class="card-header">
-					投稿者: <%= link_to post.user.name, user_path(post.user) %>
-				</div>
+		<!-- <div class="col-md-1">
+			<%#= render 'posts/rank', ranks: @rank %>
+		</div> -->
+			<% @posts.each do |post| %>
+				<div class="card col-md-3">
+					<div class="card-header">
+						投稿者: <%= link_to post.user.name, user_path(post.user) %>
+					</div>
 
-				<div class="card-body">
-					<div class="col-md-3">
-						<%= link_to post.title, post_path(post), class: "text-nowrap" %>
+					<div class="card-body">
+						<!-- <div class="col-md-3"> -->
+							<p><%= link_to post.title, post_path(post), class: "text-nowrap" %></p>
+						<!-- </div>
+						<div class="col-md-3"> -->
+							<%= link_to post_path(post) do %>
+								<%= attachment_image_tag post, :image, :fill, 200, 200 %>
+							<% end %>
+						<!-- </div> -->
+							<% if post.catname.present? %>
+							<p><span class="bg bg-success text-white" ><%= post.catname %></span></p>
+							<% end %>
 					</div>
-					<div class="col-md-3">
-						<%= link_to post_path(post) do %>
-							<%# post.photos.each do |photo| %>
-							<%= attachment_image_tag post, :image, :fill, 200, 200 %>
-						<% end %>
-					</div>
-						<% if post.catname.present? %>
-						<span class="bg bg-success text-white" ><%= post.catname + "ちゃん" %></span>
-						<% end %>
 				</div>
-			</div>
-		<% end %>
+			<% end %>
 	</div>
 </div>

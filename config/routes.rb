@@ -9,12 +9,13 @@ Rails.application.routes.draw do
   	get :follows, on: :member
   	get :followers, on: :member
   end
-  get 'users/:id/likes' =>'users#likes',as: 'user_likes'
+  get 'users/:id/likes' =>'users#likes', as: 'user_likes'
 
   resources :posts do
   	resources :photos, only: [:create]
   	resources :likes, only: [:create, :destroy]
   	resources :comments, only: [:create, :destroy]
   end
+  get 'posts/:id/ranks' =>'posts#rank', as: 'post_rank'
 end
 

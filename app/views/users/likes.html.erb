@@ -21,14 +21,16 @@
 				<table class="table table-borderless text-center">
 					<thead>
 						<tr>
-							<td>投稿</td>
-							<td>フォロー</td>
-							<td>フォロワー</td>
+							<th>投稿</th>
+							<th></th>
+							<th>フォロー</th>
+							<th>フォロワー</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td><%= @user.posts.count %></td>
+							<td></td>
 							<td>
 								<%= link_to follows_user_path(@user) do %>
 								<%= @user_follows.count %>
@@ -49,7 +51,7 @@
 		</div>
 			<div class="card mr-3">
 				<div class="card-header">
-					<ul class="nav nav-pills card-header-pills d-flex justify-content-around">
+					<ul class="nav nav-tabs card-header-tabs d-flex justify-content-around">
 						<li class="nav-item">
 							<%= link_to "投稿", user_path(@user), class: "nav-link" %>
 						</li>
@@ -67,12 +69,11 @@
 						</div>
 						<div>
 							<%= link_to post_path(post) do %>
-							<%# post.photos.each do |photo| %>
 							<%= attachment_image_tag post, :image, :fill, 200, 200 %>
 							<% end %>
 						</div>
 						<% if post.catname.present? %>
-						  <span class="bg bg-success text-white" ><%= post.catname + "ちゃん" %></span>
+						  <span class="bg bg-success text-white" ><%= post.catname %></span>
 						<% end %>
 					</div>
 				<% end %>

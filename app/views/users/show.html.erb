@@ -1,84 +1,92 @@
-
-	<div class="container">
-		<div class="card pl-5 pr-3 my-5 mx-5 pt-3 bg-light">
-			<div class="row mt-5">
-				<div class="col-3">
-					<p><%= attachment_image_tag @user, :profile_image, :fill, 200, 190 %></p>
-				</div>
-				<div class="col-2">
-					<h2><%= @user.name %></h2>
-					<p><%= @user.email %></p>
-					<% if @user == current_user %>
-						<p><%= link_to "編集する", edit_user_path(@user), class: "btn btn-dark" %></p>
+<div class="container">
+	<div class="card pl-5 pr-3 my-5 mx-5 pt-3 bg-light">
+		<div class="row mt-5">
+			<div class="col-3">
+				<p><%= attachment_image_tag @user, :profile_image, :fill, 200, 190 %></p>
+			</div>
+			<div class="col-2">
+				<h2><%= @user.name %></h2>
+				<p><%= @user.email %></p>
+				<% if @user == current_user %>
+					<p><%= link_to "編集する", edit_user_path(@user), class: "btn btn-dark" %></p>
+				<% else %>
+					<% if @user.followed_by?(current_user) %>
+						<%= link_to "フォロー解除", user_relationship_path(@user), method: :delete, class: "btn btn-primary" %>
 					<% else %>
-						<% if @user.followed_by?(current_user) %>
-							<%= link_to "フォロー解除", user_relationship_path(@user), method: :delete, class: "btn btn-primary" %>
-						<% else %>
-							<%= link_to "フォロー", user_relationships_path(@user), method: :post, class: "btn btn-primary" %>
-						<% end %>
+						<%= link_to "フォロー", user_relationships_path(@user), method: :post, class: "btn btn-primary" %>
 					<% end %>
-				</div>
-				<div class="col-6">
-					<table class="table table-borderless text-center">
-						<thead>
-							<tr>
-								<td>投稿</td>
-								<td>フォロー</td>
-								<td>フォロワー</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><%= @user.posts.count %></td>
-									<td>
-										<%= link_to follows_user_path(@user) do %>
-										<%= @user_follows.count %>
-										<% end %>
-									</td>
-									<td>
-										<%= link_to followers_user_path(@user) do %>
-										<%= @user_followers.count %>
-										<% end %>
-									</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="row border mt-3 mr-3 mb-3">
-				<%= @user.introduction %>
-			</div>
-			<div class="card mr-3">
-				<div class="card-header">
-					<ul class="nav nav-pills card-header-pills d-flex justify-content-around">
-						<li class="nav-item">
-							<%= link_to "投稿", user_path(@user), class: "nav-link active" %>
-						</li>
-						<li class="nav-item">
-							<%= link_to "いいねした投稿", user_likes_path(@user), class: "nav-link" %>
-						</li>
-					</ul>
-				</div>
-				<div class="row">
-				<% @user.posts.each do |post| %>
-					<div class="card-center card-body col-md-4">
-						<div>
-							<%= link_to post.title, post_path(post), class: "text-nowrap" %>
-						</div>
-						<div>
-							<%= link_to post_path(post) do %>
-							<%# post.photos.each do |photo| %>
-							<%= attachment_image_tag post, :image, :fill, 200, 200 %>
-							<% end %>
-						</div>
-						<% if post.catname.present? %>
-						  <span class="bg bg-success text-white" ><%= post.catname + "ちゃん" %></span>
-						<% end %>
-					</div>
 				<% end %>
 			</div>
+			<div class="col-6">
+				<table class="table table-borderless text-center">
+					<thead>
+						<tr>
+							<th>投稿</th>
+							<th></th>
+							<th>フォロー</th>
+							<th>フォロワー</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= @user.posts.count %></td>
+							<td></td>
+							<td>
+								<%= link_to follows_user_path(@user) do %>
+								<%= @user_follows.count %>
+								<% end %>
+							</td>
+							<td>
+								<%= link_to followers_user_path(@user) do %>
+								<%= @user_followers.count %>
+								<% end %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="balloon-top">
+			<%= @user.introduction %>
+		</div>
+		<div class="card mr-3">
+			<div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs d-flex justify-content-around">
+					<li class="nav-item">
+						<%= link_to "投稿", user_path(@user), class: "nav-link active" %>
+					</li>
+					<li class="nav-item">
+						<%= link_to "いいねした投稿", user_likes_path(@user), class: "nav-link" %>
+					</li>
+				</ul>
+			</div>
+		<div class="row">
+			<% @user.posts.each do |post| %>
+				<div class="card-center card-body col-md-4">
+					<div class="card">
+						<div class="card-header">
+							投稿者: <%= link_to post.user.name, user_path(@user) %>
+						</div>
+						<div class="card-body">
+							<div>
+								<%= link_to post.title, post_path(post), class: "text-nowrap" %>
+							</div>
+							<div>
+								<%= link_to post_path(post) do %>
+								<%= attachment_image_tag post, :image, :fill, 200, 200 %>
+								<% end %>
+							</div>
+						</div>
+							<% if post.catname.present? %>
+							  <span class="bg bg-success text-white" ><%= post.catname %></span>
+							<% end %>
+					</div>
+				</div>
+			<% end %>
 		</div>
 	</div>
+</div>
+
 
 
 

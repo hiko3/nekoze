@@ -1,0 +1,21 @@
+<div class="d-flex flex-column">
+	<h1 class="display-4 bg bg-danger text-light mr-auto">RANK</h1>
+	<% ranks.each.with_index(1) do |rank, i| %>
+	<h1 class="bg bg-warning text-muted mr-auto"><%= "#{i}位" %></h1>
+		<div class="card mb-2 mr-auto">
+			<div class="card-header">
+				投稿者: <%= link_to rank.user.name, user_path(rank.user) %>
+			</div>
+			<div class="card-body">
+				<p><%= link_to rank.title, post_path(rank), class: "text-nowrap" %></p>
+				<%= link_to post_path(rank) do %>
+					<%= attachment_image_tag rank, :image, :fill, 200, 200 %>
+				<% end %>
+				<% if rank.catname.present? %>
+					<span class="bg bg-success text-white"><%= rank.catname %></span>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>
+
