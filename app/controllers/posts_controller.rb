@@ -4,12 +4,10 @@ class PostsController < ApplicationController
 
   def new
   	@post = Post.new
-  	# @post.photos.build
   end
 
   def create
   	@post = Post.new(post_params)
-  	# if @post.image.present?
   	@post.user_id = current_user.id
 	if @post.save!
 	   redirect_to root_path
@@ -18,10 +16,6 @@ class PostsController < ApplicationController
 		redirect_to new_post_path
 		flash[:alert] = "投稿に失敗しました"
 	end
-  	# else
-  	# 	redirect_to new_post_path
-  	# 	flash[:alert] = "投稿に失敗しました"
-  	# end
   end
 
   def show
@@ -30,9 +24,11 @@ class PostsController < ApplicationController
   end
 
   def index
-  	# @posts = Post.all.order('created_at DESC')
   	@posts = Post.page(params[:page]).reverse_order
+  	@rank = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
   end
+
+
 
   def edit
   	@post = Post.find(params[:id])
@@ -58,6 +54,8 @@ class PostsController < ApplicationController
   	end
   		redirect_to root_path
   end
+
+
 
 
   private

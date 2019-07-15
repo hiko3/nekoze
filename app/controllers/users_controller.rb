@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @user_follows = @user.followings
+    @user_followers = @user.followers
   end
 
   def edit
@@ -29,7 +31,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    user = current_user
+    user.destroy
+    redirect_to root_path
+  end
 
+  def likes
+    @user = User.find(params[:id])
+    @likes = Like.where(user_id: @user.id)
+    @user_follows = @user.followings
+    @user_followers = @user.followers
   end
 
   def follows
