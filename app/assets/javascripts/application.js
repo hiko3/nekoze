@@ -12,9 +12,14 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require data-confirm-modal
 //= require_tree .
+
+$(function(){
+	var num = Math.ceil(4 * Math.random());
+	$('body').addClass('background' + num);
+});
