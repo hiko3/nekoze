@@ -1,7 +1,7 @@
 <div class="d-flex flex-column">
 	<div class="fas fa-crown my-gold fa-5x mb-3 mr-auto"></div>
 	<% ranks.each.with_index(1) do |rank, i| %>
-	<h1 class="bg bg-info text-muted mr-3"><%= "#{i}位" %></h1>
+	<h1 class="bg bg-info text-muted mr-3 text-center"><%= "#{i}位" %></h1>
 		<div class="card mb-2 mr-auto">
 			<div class="card-header">
 				投稿者: <%= link_to rank.user.name, user_path(rank.user) %>

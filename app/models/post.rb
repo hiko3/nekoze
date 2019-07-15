@@ -5,6 +5,7 @@ class Post < ApplicationRecord
 	has_many   :comments, dependent: :destroy
 	validates  :title, presence: true, length: { maximum: 20 }
 	validates  :body, length: { maximum: 120 }
+	validates  :image, presence: true
 	attachment :image
 
 	def liked_by?(user)
