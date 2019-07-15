@@ -9,6 +9,7 @@
 				<p><%= @user.email %></p>
 				<% if @user == current_user %>
 					<p><%= link_to "編集する", edit_user_path(@user), class: "btn btn-dark" %></p>
+					<p><%= link_to "退会する", user_path(@user), method: :delete, data: { confirm: '本当に退会してよろしいですか？', cancel: 'やめる', commit: '退会する'}, title: '確認', class: "btn btn-danger my-3" %></p>
 				<% else %>
 					<% if @user.followed_by?(current_user) %>
 						<%= link_to "フォロー解除", user_relationship_path(@user), method: :delete, class: "btn btn-primary" %>
@@ -29,14 +30,14 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><%= @user.posts.count %></td>
+							<td class="user-count"><%= @user.posts.count %></td>
 							<td></td>
-							<td>
+							<td class="user-count">
 								<%= link_to follows_user_path(@user) do %>
 								<%= @user_follows.count %>
 								<% end %>
 							</td>
-							<td>
+							<td class="user-count">
 								<%= link_to followers_user_path(@user) do %>
 								<%= @user_followers.count %>
 								<% end %>
@@ -68,8 +69,8 @@
 							投稿者: <%= link_to post.user.name, user_path(@user) %>
 						</div>
 						<div class="card-body">
-							<div>
-								<%= link_to post.title, post_path(post), class: "text-nowrap" %>
+							<div class="post_title text-nowrap">
+								<%= post.title %>
 							</div>
 							<div>
 								<%= link_to post_path(post) do %>

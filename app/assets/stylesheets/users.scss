@@ -20,7 +20,7 @@
   content: "";
   position: absolute;
   top: -24px;
-  left: 20%;
+  left: 10%;
   margin-left: -15px;
   border: 12px solid transparent;
   border-bottom: 12px solid #FFF;
@@ -31,7 +31,7 @@
   content: "";
   position: absolute;
   top: -30px;
-  left: 20%;
+  left: 10%;
   margin-left: -17px;
   border: 14px solid transparent;
   border-bottom: 14px solid #555;
@@ -59,7 +59,7 @@
   content: "";
   position: absolute;
   top: -24px;
-  left: 20%;
+  left: 10%;
   margin-left: -15px;
   border: 12px solid transparent;
   border-bottom: 12px solid #FFF;
@@ -70,7 +70,7 @@
   content: "";
   position: absolute;
   top: -30px;
-  left: 20%;
+  left: 10%;
   margin-left: -17px;
   border: 14px solid transparent;
   border-bottom: 14px solid #555;
@@ -80,4 +80,8 @@
 .balloon-top p {
   margin: 0;
   padding: 0;
+}
+
+.user-count {
+	font-size: 20px
 }

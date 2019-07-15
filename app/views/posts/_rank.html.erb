@@ -1,13 +1,17 @@
 <div class="d-flex flex-column">
-	<h1 class="display-4 bg bg-danger text-light mr-auto">RANK</h1>
+	<div class="fas fa-crown my-gold fa-5x mb-3 mr-auto"></div>
 	<% ranks.each.with_index(1) do |rank, i| %>
-	<h1 class="bg bg-warning text-muted mr-auto"><%= "#{i}位" %></h1>
+	<h1 class="bg bg-info text-muted mr-3"><%= "#{i}位" %></h1>
 		<div class="card mb-2 mr-auto">
 			<div class="card-header">
 				投稿者: <%= link_to rank.user.name, user_path(rank.user) %>
 			</div>
 			<div class="card-body">
-				<p><%= link_to rank.title, post_path(rank), class: "text-nowrap" %></p>
+				<div class="d-flex justify-content-between">
+					<div class="post_title"><%= rank.title %></div>
+					<div><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>いいね<%= rank.likes.count %>件</div>
+				</div>
+
 				<%= link_to post_path(rank) do %>
 					<%= attachment_image_tag rank, :image, :fill, 200, 200 %>
 				<% end %>
