@@ -1,7 +1,13 @@
 <div class="container">
+	<div class="searchbox mt-3">
+			<%= search_form_for @user_search , url: users_path do |f| %>
+				<%= f.text_field :name_cont, placeholder: "ユーザーを検索..." %>
+				<%= f.submit "検索", class: 'btn btn-light btn-sm' %>
+			<% end %>
+		</div>
 	<div class="row mt-5">
-		<% @users.each do |user| %>
-			<div class="col-4">
+		<% @search_users.each do |user| %>
+			<div class="col-md-4">
 				<div class="card p-3 mr-5 mb-3">
 					<div class="card-header d-flex justify-content-between">
 						<%= link_to user_path(user) do %>
@@ -17,7 +23,7 @@
 					</div>
 					<div class="card-body">
 						<%= link_to user_path(user) do %>
-							<%= attachment_image_tag user, :profile_image, :fill, 50, 50 %>
+							<%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image-user.png", size: '50x50' %>
 						<% end %>
 							<%= user.introduction.truncate(20, omission:'...') %>
 					</div>
@@ -26,8 +32,6 @@
 		<% end %>
 	</div>
 	<div class="d-flex justify-content-end">
-		<%=paginate @users, class: "paginate" %>
+		<%=paginate @search_users, class: "paginate" %>
 	</div>
 </div>
-
-

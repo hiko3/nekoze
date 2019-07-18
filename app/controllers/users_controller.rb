@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.page(params[:page]).reverse_order
+    # @users = User.page(params[:page]).reverse_order
+    @user_search = User.ransack(params[:q])
+    @search_users = @user_search.result.page(params[:page]).reverse_order
   end
 
   def show
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if current_user != @user
+    flash[:alert] = "編集権限がありません"
     redirect_to user_path(current_user)
     end
   end

@@ -1,8 +1,8 @@
 <div class="d-flex flex-column">
 	<div class="fas fa-crown my-gold fa-5x mb-3 mr-auto"></div>
 	<% ranks.each.with_index(1) do |rank, i| %>
-	<h1 class="bg bg-info text-muted mr-3 text-center"><%= "#{i}位" %></h1>
-		<div class="card mb-2 mr-auto">
+	<h2 class="bg bg-info text-muted mr-3 text-center w-50"><%= "#{i}位" %></h1>
+		<div class="card mb-2">
 			<div class="card-header">
 				投稿者: <%= link_to rank.user.name, user_path(rank.user) %>
 			</div>
@@ -16,7 +16,7 @@
 					<%= attachment_image_tag rank, :image, :fill, 200, 200 %>
 				<% end %>
 				<% if rank.catname.present? %>
-					<span class="bg bg-success text-white"><%= rank.catname %></span>
+					<p><span class="bg bg-success text-white"><%= rank.catname %></span></p>
 				<% end %>
 			</div>
 		</div>
