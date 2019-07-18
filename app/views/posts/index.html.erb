@@ -5,19 +5,19 @@
 
 <div class="container">
 	<div class= "row">
-		 <div class="col-3">
+		 <div class="col-md-3 col-sm">
 			<%= render 'posts/rank', ranks: @rank  %>
 		</div>
 
-		<div class="col-9">
+		<div class="col-md-9 col-sm">
 			<br>
 			<br>
 			<br>
 			<br>
 			<div class= "row">
 
-				<% @posts.each do |post| %>
-					<div class="col-4">
+				<% @search_posts.each do |post| %>
+					<div class="col-md-4 col-sm">
 						<div class="card mb-3">
 							<div class="card-header">
 								投稿者: <%= link_to post.user.name, user_path(post.user) %>
