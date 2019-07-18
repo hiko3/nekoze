@@ -14,6 +14,12 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :followers, through: :passive_relationships, source: :following
 
+  # has_many :send_messages, class_name: "Message", foreign_key: :to_user_id
+  # has_many :to_users, through: :send_messages, source: :from_user
+
+  # has_many :receive_massages, class_name: "Message", foreign_key: :from_user_id
+  # has_many :from_users, through: :from_messages, source: :to_user
+
   attachment :profile_image
 
   validates :name, presence: true, length: { maximum: 30 }
@@ -25,6 +31,8 @@ class User < ApplicationRecord
   	passive_relationships.find_by(following_id: user.id).present?
   	# 今自分(引数のuser)がフォローしようとしているユーザー(レシーバー)がフォローされているユーザー(つまりpassive)の中から、引数に渡されたユーザー(自分)がいるかどうかを調べる
   end
+
+
 
   def posts
   	return Post.where(user_id: self.id)

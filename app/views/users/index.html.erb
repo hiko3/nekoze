@@ -7,19 +7,26 @@
 						<%= link_to user_path(user) do %>
 							<span class="text-nowrap"><%= user.name %></span>
 						<% end %>
-						<% if user.followed_by?(current_user) %>
-							<%= link_to "フォロー解除", user_relationship_path(user.id,Relationship.find_by(following_id: current_user.id ,follower_id: user.id)),method: :delete, class: "btn btn-primary btn-small" %>
-						<% else %>
-							<%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-primary" %>
+						<% if current_user != user %>
+							<% if user.followed_by?(current_user) %>
+								<%= link_to "フォロー解除", user_relationship_path(user, Relationship.find_by(follower_id: user.id, following_id: current_user.id)),method: :delete, class: "btn btn-primary btn-small" %>
+							<% else %>
+								<%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-primary" %>
+							<% end %>
 						<% end %>
 					</div>
 					<div class="card-body">
-						<%= attachment_image_tag user, :profile_image, :fill, 50, 50 %>
-						<%= user.introduction.truncate(20, omission:'...') %>
+						<%= link_to user_path(user) do %>
+							<%= attachment_image_tag user, :profile_image, :fill, 50, 50 %>
+						<% end %>
+							<%= user.introduction.truncate(20, omission:'...') %>
 					</div>
 				</div>
 			</div>
 		<% end %>
+	</div>
+	<div class="d-flex justify-content-end">
+		<%=paginate @users, class: "paginate" %>
 	</div>
 </div>
 

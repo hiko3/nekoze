@@ -1,0 +1,11 @@
+<h1>Messages#show</h1>
+<p>Find me in app/views/messages/show.html.erb</p>
+
+<% if @messages.present? %>
+	<% @messages.each do |message| %>
+<div class="message">
+	<p><%= @message.content %></p>
+</div>
+	<% end %>
+
+<% end %>

@@ -66,5 +66,11 @@
 
     <%= yield %>
 
+<script>
+  $(function(){
+  var num = Math.ceil(4 * Math.random());
+  $('body').addClass('background' + num);
+});
+</script>
   </body>
 </html>

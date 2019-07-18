@@ -17,9 +17,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require data-confirm-modal
+//= require turbolinks
 //= require_tree .
 
-$(function(){
-	var num = Math.ceil(4 * Math.random());
-	$('body').addClass('background' + num);
-});

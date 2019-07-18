@@ -77,6 +77,7 @@ gem "cocoon"
 gem 'data-confirm-modal'
 gem 'kaminari'
 gem "paranoia"
-
+gem 'activeadmin'
+gem 'rails-i18n'
 
 
