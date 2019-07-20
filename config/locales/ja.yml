@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      user: 'ユーザー'
+      post: '投稿'
+      admin_user: '管理者'
+      admin_comment: '管理者コメント'
+    attributes:
+      user:
+        name: '名前'
+        introduction: '自己紹介'
+        profile_image: 'プロフィール画像'
+      post:
+        title: 'タイトル'
+        body: '本文'
+        image: '画像'
+        catname: '猫の名前'
