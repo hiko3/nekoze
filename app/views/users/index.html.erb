@@ -9,9 +9,9 @@
 		<% @search_users.each do |user| %>
 			<div class="col-md-4">
 				<div class="card p-3 mr-5 mb-3">
-					<div class="card-header d-flex justify-content-between">
+					<div class="card-header">
 						<%= link_to user_path(user) do %>
-							<span class="text-nowrap"><%= user.name %></span>
+							<span class="text-nowrap mr-5"><%= user.name %></span>
 						<% end %>
 						<% if current_user != user %>
 							<% if user.followed_by?(current_user) %>
