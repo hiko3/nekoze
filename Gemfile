@@ -79,6 +79,9 @@ gem 'data-confirm-modal'
 gem 'kaminari'
 gem "paranoia"
 gem 'activeadmin'
+gem 'active_skin'
+gem "active_material", github: "vigetlabs/active_material"
 gem 'rails-i18n'
+gem 'file_validators'
 
 
