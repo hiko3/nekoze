@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .jumbotron{
 	background:url(nekoze_top.jpeg) center no-repeat; background-size: cover;
-	color: #2F4F4F;
+	color: #5F9EA0;
 }
 
 
@@ -15,3 +15,12 @@
 	font-size: 20px;
 }
 
+.search-content {
+	display: inline;
+	padding: 0 10px 0 10px;
+	margin-left: 300px;
+}
+
+.search-count {
+	display: inline;
+}
