@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   	resources :comments, only: [:create, :destroy]
   end
   get 'posts/:id/ranks' =>'posts#rank', as: 'post_rank'
+  
 end
 

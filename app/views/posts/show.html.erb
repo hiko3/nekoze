@@ -1,18 +1,20 @@
 <div class="d-flex justify-content-center">
 	<div class="card pl-5 pr-3 my-5 mx-5 pt-3 bg-light w-75">
 		<div class="row ">
-			<div class="col-md-6">
+			<div class="col-sm-6 col-md-6 col-lg-6">
 				<div class= "d-flex flex-row">
-					<h1 class="text-nowrap"><%= @post.title %></h1>
+					<h1><%= @post.title %></h1>
 					<% if @post.catname.present? %>
 					<p class="align-self-center mx-auto bg bg-success text-white "><strong><%= @post.catname %></p></strong>
 					<% end %>
 				</div>
 			</div>
-			<div class="col-md-6 border-bottom ">
+			<div class="col-sm-8 col-md-8 col-lg-6 border-bottom ">
 				<div class= "d-flex flex-row">
-					<%= attachment_image_tag @post.user, :profile_image, :fill, 50, 50, class: "img-fluid" %>
-					<h2 class="mx-auto text-nowrap "><%= @post.user.name %></h2>
+					<%= link_to user_path(@post.user) do %>
+						<h2 class="mx-auto text-nowrap "><%= attachment_image_tag @post.user, :profile_image, :fill, 50, 50, class: "img-fluid" %>
+						<%= @post.user.name %></h2>
+					<% end %>
 					<% if @post.user != current_user %>
 						<% if @post.user.followed_by?(current_user) %>
 							<%= link_to "フォロー解除", user_relationship_path(@post.user), method: :delete, class: "btn btn-outline-primary w-50 mx-auto align-self-center" %>
@@ -26,10 +28,10 @@
 			</div>
 		</div>
 		<div class="row ">
-			<div class= "col-6">
-				<%= attachment_image_tag @post, :image, :fill, 600, 450, class: "img-fluid" %>
+			<div class= "col-sm-6 col-md-6 col-lg-6">
+				<%= attachment_image_tag @post, :image, :fill, 600, 450, class: "img-fluid mb-3" %>
 			</div>
-			<div class="col-6">
+			<div class="col-sm-8 col-md-8 col-lg-6">
 				<p class="border-bottom"><%= @post.body %></p>
 				<% @post.comments.each do |comment| %>
 						<p><%= comment.user.name %>
@@ -37,7 +39,7 @@
 						<%= comment.comment %>
 					<% if comment.user == current_user %>
 						<%= link_to post_comment_path(@post, comment),method: :delete do %>
-							<i class="fas fa-times-circle"></i></p>
+							<i class="fas fa-times-circle" style="color: red"></i></p>
 						<% end %>
 					<% end %>
 				<% end %>
@@ -60,8 +62,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<%= form_for [@post, @comment] do |f| %>
-					<%= f.text_area :comment, class: "form-control w-75 mt-4", placeholder: "コメントを入力" %>
+				<%= form_for [@post, @comment], local: true do |f| %>
+					<%= f.text_area :comment, class: "form-control w-75 mt-3", placeholder: "コメントを入力" %>
 					<%= f.submit "送信する", class: "btn btn-outline-dark w-50 my-3" %>
 				<% end %>
 			</div>
