@@ -1,0 +1,27 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.jumbotron{
+	background:url(/images/nekoze_top.jpg) center no-repeat; background-size: cover;
+	color: #5F9EA0;
+}
+
+
+.my-gold {
+	background: linear-gradient(135deg, #a79756, #faf8c5, #a79756);
+}
+
+.like-count {
+	font-size: 20px;
+}
+
+.search-content {
+	display: inline;
+	padding: 0 10px 0 10px;
+	margin-left: 300px;
+}
+
+.search-count {
+	display: inline;
+}
+

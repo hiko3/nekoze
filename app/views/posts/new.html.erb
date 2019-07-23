@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center mt-5">
+	<div class="card text-dark w-75">
+		<div class="card-header text-center text-white new-post-header">
+			新規投稿
+		</div>
+
+		<div class="card-body bg-light" >
+			<%= form_with model: @post, local: true do |f| %>
+			<%= render 'layouts/error_messages', model: f.object %>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-7">
+							<%= f.label :タイトル %>
+							<%= f.text_field :title, class: "form-control w-75" %>
+						</div>
+						<div class="col-md-5">
+							<%= f.label :猫のお名前 %>
+							<%= f.text_field :catname, class: "form-control w-75" %>
+						</div>
+					</div>
+						<%= f.label :本文 %>
+						<%= f.text_field :body, class: "form-control" %>
+							<%= f.attachment_field :image, class: "form-control-file my-3" %>
+						<%= f.submit "投稿", class: "btn btn-dark my-3" %>
+					<% end %>
+				</div>
+		</div>
+	</div>
+</div>

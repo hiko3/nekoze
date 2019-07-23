@@ -1,0 +1,52 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_directory .
+ *= require_self
+ */
+ @import "bootstrap";
+
+ body {
+/* 	background-image: url(ppp_sudare.jpg);
+*/ 	background-size: cover;
+	font-family: 'Hannotate SC',sans-serif;
+ }
+
+ .background1 {
+ 	background-image: url(/images/ZU201974DSC_0224.jpg)
+ }
+
+ .background2 {
+ 	background-image: url(/images/KAZUP1080869.jpg)
+ }
+
+ .background3 {
+ 	background-image: url(/images/RED19428B008.jpg)
+ }
+
+ .background4 {
+ 	background-image: url(/images/ppp_sudare.jpg)
+ }
+
+
+
+ .card-center{
+ 	text-align: center;
+ }
+
+.new-post-header {
+	background-color: #008080;
+}
+
+.edit-post-header {
+	background-color: #339966;
+}

@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center mt-5">
+	<div class="card text-dark w-50 m-auto">
+		<div class="card-header bg-info text-center text-white">
+			ユーザー情報編集
+		</div>
+
+		<div class="card-body bg-light" >
+			<div class="form-group">
+				<%= form_with model: @user do |f| %>
+					<%= f.label :名前 %>
+					<%= f.text_field :name, class: "form-control w-50" %>
+					<%= f.label :メールアドレス %>
+					<%= f.text_field :email, class: "form-control w-75" %>
+					<%= f.attachment_field :profile_image, placeholder:"プロフィール画像", class: "form-control-file my-3" %>
+					<%= f.label :自己紹介 %>
+					<%= f.text_area :introduction, class: "form-control" %>
+					<%= f.submit "登録", class: "btn btn-dark my-3" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

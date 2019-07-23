@@ -7,9 +7,85 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container">
+        <%= link_to root_path do %>
+          <%= image_tag "/images/nekoze.png", class: "navbar-brand", size: "240x90" %>
+         <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=
+            "#navbar-content" aria-controls="navbar-content" aria-expend="false" aria-label=
+            "Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
+            <ul class="nav navbar-nav ">
+              <% if user_signed_in? %>
+                <dl class="searchbox">
+                  <%= search_form_for @search, url: posts_path do |f| %>
+                    <%= f.text_field :title_or_catname_cont, placeholder: "投稿を検索..." %>
+                    <%= f.submit "検索", class: 'btn btn-outline-dark btn-sm'%>
+                  <% end %>
+                </dl>
+                <li class="nav-item">
+                    <%= link_to "投稿一覧" , posts_path, class: "fas fa-images nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "ユーザー" , users_path, class: "fas fa-users nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "新規投稿", new_post_path, class: "fas fa-camera-retro nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "マイページ", user_path(current_user), class: "fas fa-user-circle nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, data: {confirm: 'ログアウトしてよろしいですか？',cancel: 'やめる', commit: 'ログアウトする'}, title: '確認', class: "fas fa-sign-out-alt nav-link" %>
+                </li>
+
+              <% else %>
+                <dl class="searchbox">
+                  <%= search_form_for @search, url: posts_path do |f| %>
+                    <%= f.text_field :title_or_catname_cont, placeholder: "投稿を検索..." %>
+                    <%= f.submit "検索", class: 'btn btn-outline-dark btn-sm'%>
+                  <% end %>
+                </dl>
+                <li class="nav-item">
+                    <%= link_to "投稿一覧" , posts_path, class: "fas fa-images nav-link" %>
+                </li>
+                <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt nav-link" %>
+                </li>
+                <li class="nav-item">
+                <%= link_to "会員登録", new_user_registration_path, class: "fas fa-user-plus nav-link" %>
+                </li>
+              <% end %>
+            </ul>
+        </div>
+      </div>
+    </nav>
+      <% if flash[:notice] %>
+        <div class="alert alert-success">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
     <%= yield %>
+
+<script>
+  $(function(){
+  var num = Math.ceil(4 * Math.random());
+  $('body').addClass('background' + num);
+});
+</script>
   </body>
 </html>

@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center mt-5 ">
+	<div class="card text-dark w-75 ">
+		<div class="card-header text-center text-white edit-post-header">
+			投稿内容編集
+		</div>
+
+		<div class="card-body bg-light" >
+			<div class="form-group">
+				<%= form_with model: @post, local: true do |f| %>
+				<%= render 'layouts/error_messages', model: f.object %>
+					<div class="form-row">
+						<div class="col-md-7">
+							<%= f.label :タイトル %>
+							<%= f.text_field :title, class: "form-control w-75" %>
+						</div>
+						<div class="col-md-5">
+							<%= f.label :猫のお名前 %>
+							<%= f.text_field :catname, class: "form-control w-75" %>
+						</div>
+					</div>
+						<%= f.label :本文 %>
+						<%= f.text_field :body, class: "form-control w-75" %>
+							<%= f.attachment_field :image, class: "form-control-file my-3" %>
+						<%= f.submit "更新", class: "btn btn-dark my-3" %>
+						<%= link_to "削除", post_path(@post), method: :delete, data: { confirm: '本当に削除してよろしいですか？', cancel: 'やめる', commit: '削除する'}, title: '確認', class: "btn btn-danger my-3" %>
+					<% end %>
+			</div>
+		</div>
+	</div>
+</div>

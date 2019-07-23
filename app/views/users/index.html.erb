@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="searchbox mt-3">
+		<%= search_form_for @user_search , url: users_path do |f| %>
+			<%= f.text_field :name_cont, placeholder: "ユーザーを検索..." %>
+			<%= f.submit "検索", class: 'btn btn-light btn-sm' %>
+		<% end %>
+	</div>
+
+	<div class="d-flex justify-content-center">
+		<div class="card pl-3 pr-3 my-5 mx-5 pt-3 bg-light">
+			<table class="table table-striped">
+				<tbody>
+					<% @search_users.each do |user| %>
+					<tr>
+						<td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image-user.png", size: '50x50' %></td>
+						<td><%= link_to user.name, user_path(user) %></td>
+						<% if user != current_user %>
+							<% if user.followed_by?(current_user) %>
+								<td width="25%"><%= link_to "フォロー解除", user_relationship_path(user, Relationship.find_by(follower_id: user.id, following_id: current_user.id)), method: :delete, class: "btn btn-outline-primary " %></td>
+							<% else %>
+								<td width="25%"><%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %></td>
+							<% end %>
+						<% else %>
+							<td>ログイン中</td>
+						<% end %>
+						<td><%= user.introduction.truncate(25, omission:'...') %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="d-flex justify-content-end">
+		<%=paginate @search_users, class: "paginate" %>
+	</div>
+</div>
