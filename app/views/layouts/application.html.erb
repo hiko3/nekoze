@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container">
         <%= link_to root_path do %>
-          <%= image_tag "nekoze.png", class: "navbar-brand", size: "240x90" %>
+          <%= image_tag "/images/nekoze.png", class: "navbar-brand", size: "240x90" %>
          <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=
             "#navbar-content" aria-controls="navbar-content" aria-expend="false" aria-label=
@@ -48,7 +48,12 @@
                 </li>
 
               <% else %>
-
+                <dl class="searchbox">
+                  <%= search_form_for @search, url: posts_path do |f| %>
+                    <%= f.text_field :title_or_catname_cont, placeholder: "投稿を検索..." %>
+                    <%= f.submit "検索", class: 'btn btn-outline-dark btn-sm'%>
+                  <% end %>
+                </dl>
                 <li class="nav-item">
                     <%= link_to "投稿一覧" , posts_path, class: "fas fa-images nav-link" %>
                 </li>

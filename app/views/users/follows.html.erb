@@ -1,22 +1,25 @@
 <div class="d-flex justify-content-center">
 	<div class="card pl-5 pr-3 my-5 mx-5 pt-3 bg-light">
-		<table class="table table-striped">
-			<tbody>
-				<% @users.each do |user| %>
-				<tr>
-					<td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image-user.png", size: '50x50' %></td>
-					<td><%= link_to user.name, user_path(user) %></td>
-					<% if user != current_user %>
-						<% if user.followed_by?(current_user) %>
-							<td><%= link_to "フォロー解除", user_relationship_path(user.id), method: :delete, class: "btn btn-outline-primary " %></td>
-						<% else %>
-							<td><%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %></td>
+		<div class="card-header bg-info text-center text-white">
+			フォロー中
+		</div>
+			<table class="table table-striped">
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+						<td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image-user.png", size: '50x50' %></td>
+						<td><%= link_to user.name, user_path(user) %></td>
+						<% if user != current_user %>
+							<% if user.followed_by?(current_user) %>
+								<td><%= link_to "フォロー解除", user_relationship_path(user.id), method: :delete, class: "btn btn-outline-primary " %></td>
+							<% else %>
+								<td><%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %></td>
+							<% end %>
 						<% end %>
+						<td><%= user.introduction.truncate(25, omission:'...') %></td>
+					</tr>
 					<% end %>
-					<td><%= user.introduction.truncate(25, omission:'...') %></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
+				</tbody>
+			</table>
 	</div>
 </div>

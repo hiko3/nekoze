@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   	@post = Post.new
   end
 
+
   def create
   	@post = Post.new(post_params)
   	@post.user_id = current_user.id
@@ -13,21 +14,22 @@ class PostsController < ApplicationController
 	   redirect_to root_path
 	   flash[:notice] = "投稿されました"
 	else
-		redirect_to new_post_path
-		flash[:alert] = "投稿に失敗しました"
+		flash.now[:alert] = "投稿に失敗しました"
+		render :new
 	end
   end
+
 
   def show
   	@post = Post.find(params[:id])
   	@comment = Comment.new
   end
 
+
   def index
   	@posts = Post.page(params[:page]).reverse_order
   	@rank = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
-
 
 
   def edit
@@ -38,16 +40,18 @@ class PostsController < ApplicationController
 	end
   end
 
+
   def update
   	@post = Post.find(params[:id])
   	if @post.update(post_params)
   		flash[:notice] = "投稿内容を編集しました"
   		redirect_to post_path(@post)
   	else
-  		flash[:alert] = "編集に失敗しました"
-  		redirect_to edit_post_path(@post)
+  		flash.now[:alert] = "編集に失敗しました"
+  		render :edit
   	end
   end
+
 
   def destroy
   	@post = Post.find(params[:id])
@@ -60,16 +64,10 @@ class PostsController < ApplicationController
   end
 
 
-
-
   private
 
   	def post_params
   		params.require(:post).permit(:title, :body, :genre, :catname, :image)
-  			# photos_attributes: [:image])#.merge(user_id: current_user.id)
   	end
 
-  	# def post_params
-  	# 	params.require(:post).permit(:title, :body, photo.image :[])
-  	# end
 end
