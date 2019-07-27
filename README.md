@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+＊アプリケーションの概要
+猫の写真共有サービス
+url（エンドユーザー側）:http://ec2-52-198-49-22.ap-northeast-1.compute.amazonaws.com/
+url（管理者側）:http://ec2-52-198-49-22.ap-northeast-1.compute.amazonaws.com/admin
+email: admin@admin.com
+password: password
 
-Things you may want to cover:
+*機能一覧
+.ユーザー認証機能
+.画像投稿、閲覧、編集、削除機能
+.投稿にいいねをつける機能
+.投稿にコメントをつける機能
+.ユーザーをフォローする機能
+.投稿、ユーザー検索機能
+.ページネーション機能
 
-* Ruby version
+*使用技術一覧
+#言語、フレームワーク
+.ruby '2.5.5'
+.gem 'rails', '~> 5.2.3'
+#主な使用gem
+.gem 'devise'
+.gem 'refile', require: 'refile/rails', github: 'manfe/refile'
+.gem 'refile-mini_magick'
+.gem 'ransack'
+.gem 'kaminari'
+.gem 'paranoia'
+.gem 'activeadmin'
+.gem 'bootstrap', '~> 4.3.1'
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#デプロイ環境
+.AWS(EC2、RDS)
