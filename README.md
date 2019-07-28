@@ -3,7 +3,11 @@
 ＊アプリケーションの概要<br>
 猫の写真共有サービス<br>
 url（エンドユーザー側）:http://ec2-52-198-49-22.ap-northeast-1.compute.amazonaws.com/<br>
+テストユーザー:<br>
+email:test@test.com<br>
+password: password<br>
 url（管理者側）:http://ec2-52-198-49-22.ap-northeast-1.compute.amazonaws.com/admin<br>
+テストユーザー:<br>
 email: admin@admin.com<br>
 password: password<br>
 <br>
