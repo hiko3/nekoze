@@ -3,6 +3,21 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
 		let(:user) { User.create!(email: 'hoge@example.com', name: 'name', password: 'password') }
 
+		describe "アソシエーション" do
+			it "Userモデルに属している" do
+				is_expected.to belong_to (:user)
+			end
+
+			it "Likeモデルを複数持っている" do
+				is_expected.to have_many (:likes)
+			end
+
+			it "Commentモデルを複数持っている" do
+				is_expected.to have_many (:comments)
+			end
+		end
+
+
 		context "データが正しく保存される" do
 			before do
 				@post = Post.new
