@@ -23,7 +23,8 @@
 						<% else %>
 							<td>ログイン中</td>
 						<% end %>
-						<td><%= user.introduction.truncate(25, omission:'...') %></td>
+						<!-- <td><%#= user.introduction.truncate(25, omission:'...') %></td> -->
+						<td><%= truncate(user.introduction,length:25, omission:'...')%></td>
 					</tr>
 					<% end %>
 				</tbody>

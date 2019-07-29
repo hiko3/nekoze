@@ -2,6 +2,21 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+	describe "アソシエーション" do
+		it "Postモデルを複数持っている" do
+			is_expected.to have_many (:posts)
+		end
+
+		it "Likeモデルを複数持っている" do
+			is_expected.to have_many (:likes)
+		end
+
+		it "Commentモデルを複数持っている" do
+			is_expected.to have_many (:comments)
+		end
+	end
+
+
 	context " emailが空の時、データが正しく保存されない" do
 		before do
 			@user = User.new

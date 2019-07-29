@@ -11,6 +11,7 @@ class Post < ApplicationRecord
 				presence: true
 	attachment :image, type: :image
 
+    #いいね済みか判定するメソッド
 	def liked_by?(user)
 		Like.where(user_id: user.id, post_id: id) #user_idとpost_idが一致するlikeを検索する
 	end
